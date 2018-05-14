@@ -1,0 +1,8 @@
+{
+    "name": "ping",
+    "description": "A basic command example",
+    "developed_by": "StijnDotExe",
+    "serverdefaults": {
+        "pong": false
+    }
+}
