@@ -3,6 +3,6 @@
     "description": "A basic command example",
     "developed_by": "StijnDotExe",
     "serverdefaults": {
-        "pong": "test"
+        "pong": false
     }
 }
