@@ -122,6 +122,7 @@ request.onreadystatechange = function () {
 }
 request.open("PATCH", "www.discat.website/moduleserversettings", true);
 request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("csrf-token", document.getElementById("csrf-token").content);
 request.send(JSON.stringify(body));
 ```
 
