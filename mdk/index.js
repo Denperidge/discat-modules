@@ -3,10 +3,12 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 var commands;
+var config;
 var prefix = "!";
 
 function loadMDK(callback) {
     commands = {};
+    config = {};
 
     const fs = require("fs");
 
@@ -19,6 +21,19 @@ function loadMDK(callback) {
             var moduleCommands = require(__dirname.replace("mdk", "modules/") + modules[i] + "/module.js").getCommands(
                 require(__dirname.replace("mdk", "modules/") + modules[i] + "/config.json").serverdefaults
             );
+
+            if (require(__dirname.replace("mdk", "modules/") + modules[i] + "/module.js").getConfig != undefined){
+                config[modules[i]] = require(__dirname.replace("mdk", "modules/") + modules[i] + "/module.js").getConfig();
+
+                var configKeys = Object.keys(config[modules[i]]);
+                for (var j = 0; j < configKeys.length; j++){
+                    // If value of a config parameter has GET_FROM_CONFIG
+                    if (config[modules[i]][configKeys[j]] == "GET_FROM_CONFIG"){
+                        // Get it's data from config.json and set it
+                        config[modules[i]][configKeys[j]] = require("./config.json").third_party[configKeys[j]]
+                    }
+                }
+            }
 
             for (var j = 0; j < moduleCommands.length; j++) {
                 var moduleCommand = moduleCommands[j];
