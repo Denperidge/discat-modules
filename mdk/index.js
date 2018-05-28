@@ -60,7 +60,7 @@ client.on('message', msg => {
     var reply;
     if (msg.author == client.user) return;
     if ((reply = commands[msg.content.toLowerCase().split(" ")[0]]) != null)
-        reply(msg);
+        reply(msg, config);
     else if (msg.content == prefix + "reloadmdk") {
         loadMDK(() => {
             msg.reply("Reloaded!");
