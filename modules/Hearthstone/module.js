@@ -9,7 +9,7 @@ function getCard(msg, config) {
             "X-Mashape-Key": config.Hearthstone.hearthstone_api_key
         }
     }
-    config.hearthstone.request.get(options, (error, response, body) => {
+    config.Hearthstone.request.get(options, (error, response, body) => {
         var cards = JSON.parse(body);
         // If no cards are found, reply that
         if (cards.error != undefined) {
