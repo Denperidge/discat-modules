@@ -6,7 +6,7 @@ function getCard(msg, config) {
             + cardName
             + "?collectible=1",
         headers: {
-            "X-Mashape-Key": config.hearthstone.hearthstone_api_key
+            "X-Mashape-Key": config.Hearthstone.hearthstone_api_key
         }
     }
     config.hearthstone.request.get(options, (error, response, body) => {
