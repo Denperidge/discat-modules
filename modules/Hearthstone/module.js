@@ -50,7 +50,7 @@ function awaitSpecificCardIndex(msg, cards, strCards) {
             }
             else msg.reply(cards[requestedcard].imgGold);
         })
-        .catch(x => console.log(x));
+        .catch(x => msg.reply("No reply in the last minute! Cancelling search."));
 }
 
 function askForMoreInfo() {
