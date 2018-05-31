@@ -11,6 +11,8 @@ function getCard(msg, config) {
     }
     config.Hearthstone.request.get(options, (error, response, body) => {
         var cards = JSON.parse(body);
+        console.log(cards);
+        console.log(cards.length);
         // If no cards are found, reply that
         if (cards.error != undefined) {
             if (cards.error == 404) msg.reply("no cards with the name \"" + cardName + "\"!");
