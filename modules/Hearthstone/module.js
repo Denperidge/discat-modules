@@ -37,7 +37,7 @@ function awaitSpecificCardIndex(msg, cards, strCards) {
     msg.reply("Multiple cards found! Type the number of the card you want \n" + strCards);
     msg.channel
         .awaitMessages(m => m.author == msg.author, { max: 1, time: 60000, errors: ["time"] })
-        .then(collected => requestedcardmsg => {
+        .then(requestedcardmsg => {
             var requestedcard;
             if (requestedcardmsg.content.toLowerCase() == "cancel") msg.reply("Hearthstone card search cancelled!");
             else if (isNaN(requestedcard = parseInt(requestedcardmsg.content))) {
