@@ -42,7 +42,7 @@ function awaitSpecificCardIndex(msg, cards, strCards) {
             var requestedcard;
 
             if (requestedcardmsg.content.toLowerCase() == "cancel") msg.reply("Hearthstone card search cancelled!");
-            else if (isNaN(requestedcard = parseInt(requestedcardmsg.content))) {
+            else if (isNaN((requestedcard = parseInt(requestedcardmsg.content)))) {
                 msg.reply = "That isn't a valid number! Try again, or type cancel to cancel";
                 awaitSpecificCardIndex(msg, card, strCards);
             }
