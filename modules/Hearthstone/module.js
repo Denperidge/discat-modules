@@ -28,7 +28,6 @@ function getCard(msg, config) {
                 strCards += i + ": " + cards[i].name + "\n";
 
             strCards.lastIndexOf(0, strCards.lastIndexOf("\n"));
-            strCards.remove(2)
             awaitSpecificCardIndex(msg, cards, strCards);
         }
     });
