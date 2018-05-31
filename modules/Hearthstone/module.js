@@ -50,7 +50,9 @@ function awaitSpecificCardIndex(msg, cards, strCards) {
                 msg.reply("That number is not part of the options! Please select a number between 0 and " + (cards.length - 1) + ", or type cancel to cancel");
                 awaitSpecificCardIndex(msg, card, strCards);
             }
-            else msg.reply(cards[requestedcard]);
+            else {
+                console.log(requestedcard); 
+                msg.reply(cards[requestedcard]) };
         })
         .catch(x => console.log(x));
 }
