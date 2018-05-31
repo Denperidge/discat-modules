@@ -11,8 +11,6 @@ function getCard(msg, config) {
     }
     config.Hearthstone.request.get(options, (error, response, body) => {
         var cards = JSON.parse(body);
-        console.log(cards);
-        console.log(cards.length);
         // If no cards are found, reply that
         if (cards.error != undefined) {
             if (cards.error == 404) msg.reply("no cards with the name \"" + cardName + "\"!");
@@ -21,8 +19,7 @@ function getCard(msg, config) {
         else if (cards.length == 1) {
             msg.reply(cards[0].imgGold);
         }
-        else if (cards.length > 1) {
-            console.log(cards);
+        else if (cards.length > 1 && cards.length < 10) {
             var strCards = "";
             for (var i = 0; i < cards.length; i++)
                 strCards += i + ": " + cards[i].name + "\n";
@@ -30,6 +27,7 @@ function getCard(msg, config) {
             strCards.lastIndexOf(0, strCards.lastIndexOf("\n"));
             awaitSpecificCardIndex(msg, cards, strCards);
         }
+        else msg.reply("Too many results! Be a bit more specific");
     });
 }
 
@@ -50,9 +48,7 @@ function awaitSpecificCardIndex(msg, cards, strCards) {
                 msg.reply("That number is not part of the options! Please select a number between 0 and " + (cards.length - 1) + ", or type cancel to cancel");
                 awaitSpecificCardIndex(msg, card, strCards);
             }
-            else {
-                console.log(requestedcard); 
-                msg.reply(cards[requestedcard].imgGold) };
+            else msg.reply(cards[requestedcard].imgGold);
         })
         .catch(x => console.log(x));
 }
