@@ -52,7 +52,7 @@ function awaitSpecificCardIndex(msg, cards, strCards) {
             }
             else {
                 console.log(requestedcard); 
-                msg.reply(cards[requestedcard]) };
+                msg.reply(cards[requestedcard].imgGold) };
         })
         .catch(x => console.log(x));
 }
