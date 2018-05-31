@@ -39,17 +39,14 @@ function awaitSpecificCardIndex(msg, cards, strCards) {
             var requestedcardmsg = collected.first();
             var requestedcard;
 
-            console.log(requestedcardmsg.content);
-            console.log(requestedcardmsg.content == "cancel");
-
             if (requestedcardmsg.content.toLowerCase() == "cancel") msg.reply("Hearthstone card search cancelled!");
             else if (isNaN((requestedcard = parseInt(requestedcardmsg.content)))) {
                 msg.reply("That isn't a valid number! Try again, or type cancel to cancel");
-                awaitSpecificCardIndex(msg, card, strCards);
+                awaitSpecificCardIndex(msg, cards, strCards);
             }
             else if (requestedcard < 0 || requestedcard >= cards.length) {
                 msg.reply("That number is not part of the options! Please select a number between 0 and " + (cards.length - 1) + ", or type cancel to cancel");
-                awaitSpecificCardIndex(msg, card, strCards);
+                awaitSpecificCardIndex(msg, cards, strCards);
             }
             else msg.reply(cards[requestedcard].imgGold);
         })
