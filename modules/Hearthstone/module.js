@@ -20,12 +20,34 @@ function getCard(msg, config) {
             msg.reply(cards[0].imgGold);
         }
         else if (cards.length > 1) {
+            console.log(cards);
+            var strCards = "";
+            for (var i = 0; i < cards.length; i++)
+                strCards += i + ": " + cards[i].name + "\n";
 
+            strCards.lastIndexOf(0, strCards.lastIndexOf("\n"));
+            strCards.remove(2)
+            awaitSpecificCardIndex(msg, cards, strCards);
         }
     });
 }
 
-function askForMoreInfo(){
+function awaitSpecificCardIndex(msg, cards, strCards) {
+    msg.reply("Multiple cards found! Type the number of the card you want \n" + strCards);
+    msg.channel
+        .awaitMessages(m => m.author == msg.author && !isNaN(parseInt(msg.content)), { max: 1, time: 60000, errors: ["time"] })
+        .then(collected => requestedcardmsg => {
+            var requestedcard = parseInt(requestedcardmsg.content);
+            if (requestedcard < 0 || requestedcard >= cards.length) {
+                "That number is not part of the options! Please select a number between 0 and " + (cards.length - 1);
+                awaitSpecificCardIndex(msg, card, strCards);
+            }
+            else msg.reply(cards[requestedcard]);
+        })
+        .catch(x => msg.reply("No reply after a minute, cancelling search!"));
+}
+
+function askForMoreInfo() {
 
 }
 
