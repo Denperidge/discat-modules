@@ -19,7 +19,7 @@ function getCard(msg, config) {
         else if (cards.length == 1) {
             msg.reply(cards[0].imgGold);
         }
-        else if (cards.length > 1 && cards.length < 10) {
+        else if (cards.length > 1 && cards.length < 15) {
             var strCards = "";
             for (var i = 0; i < cards.length; i++)
                 strCards += i + ": " + cards[i].name + "\n";
@@ -27,7 +27,7 @@ function getCard(msg, config) {
             strCards.lastIndexOf(0, strCards.lastIndexOf("\n"));
             awaitSpecificCardIndex(msg, cards, strCards);
         }
-        else msg.reply("Too many results! Be a bit more specific");
+        else msg.reply(cards.length + " results! Try to limit it down to 15.");
     });
 }
 
